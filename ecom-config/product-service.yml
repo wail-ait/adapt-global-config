@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: product-service
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres.microservices-ecommerce:5432/product #.svc.cluster.local
+    username: wail
+    password: wail
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    clean-disabled: false
+
+
+server:
+  port: 7050

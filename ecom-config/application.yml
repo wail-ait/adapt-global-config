@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    discovery:
+      enabled: true
+
+    config:
+      enabled: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://discovery-service:8761/eureka}
+      register-with-eureka: true
+      fetch-registry: true

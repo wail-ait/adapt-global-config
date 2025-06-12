@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: notification-service
+
+  #data:
+  #  mongodb:
+  #    host: mongodb-service.db.svc.cluster.local
+  #    port: 27017
+  #    username: userdb
+  #    password: adaptive1234
+  #    database: notification
+  data:
+    mongodb:
+      host: mongodb.microservices-ecommerce #.svc.cluster.local
+      port: 27017
+      username: wail
+      password: wail
+      database: notification
+
+  kafka:
+    bootstrap-servers: kafka.microservices-ecommerce:9092
+    consumer:
+      group-id: notificationGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+#        spring.json.add.type.headers: true # This tells Kafka to add a type header
+#        spring.json.type.default.type: java.lang.Object # default type for deserialization
+        #spring.json.type.mapping: notification:com.adaptive.ecommerce.kafka.notification.Notification # mapping used for deserialization on the consumer side
+        spring.json.type.mapping: orderConfirmation:com.adaptive.ecommerce.kafka.order.OrderConfirmation,paymentConfirmation:com.adaptive.ecommerce.kafka.payment.PaymentConfirmation
+
+
+  mail:
+    host: maildev.microservices-ecommerce #.svc.cluster.local
+    port: 1025
+    username: wail
+    password: wail
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 3000
+      mail.smtp.writetimeout: 5000
+      mail.smtp.trust: "*"
+
+    
+server:
+  port: 7080

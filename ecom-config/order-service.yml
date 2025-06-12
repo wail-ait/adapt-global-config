@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: order-service
+
+  #datasource:
+  #  driver-class-name: org.postgresql.Driver
+  #  url: jdbc:postgresql://postgresql-service.db.svc.cluster.local:5432/order
+  #  username: postgres
+  #  password: adaptive1234
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres.microservices-ecommerce:5432/product #.svc.cluster.local
+    username: wail
+    password: wail
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  
+  kafka:
+    bootstrap-servers: kafka.microservices-ecommerce:9092 # where to initially connect to the kafka cluster
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # simple for partitioning easy to trace and debug
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # supports nested objects
+      properties:
+        spring.json.type.mapping: orderConfirmation:com.adaptive.ecommerce.kafka.order.OrderConfirmation # mapping used for deserialization on the consumer side
+        spring.json.add.type.headers: true  # This tells Kafka to add a type header
+
+
+server:
+  port: 7060
