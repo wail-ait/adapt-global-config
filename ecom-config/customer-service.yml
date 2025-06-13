@@ -3,14 +3,17 @@ spring:
     name: customer-service
 
 
-
   data:
     mongodb:
-      host: mongodb.microservices-ecommerce #.svc.cluster.local
-      port: 27017
-      username: wail
-      password: wail
-      database: customer
+      uri: mongodb://wail:wail@mongodb.microservices-ecommerce:27017/customer?authSource=admin
+
+#  data:
+#    mongodb:
+#      host: mongodb.microservices-ecommerce #.svc.cluster.local
+#      port: 27017
+#      username: wail
+#      password: wail
+#      database: customer
 
 server:
   port: 7070
