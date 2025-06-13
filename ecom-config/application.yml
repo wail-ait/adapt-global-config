@@ -20,6 +20,6 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: ${DISCOVERY_SERVICE_URL:http://discovery-service:8761/eureka}
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://discovery-service.functional-services:8761/eureka}
       register-with-eureka: true
       fetch-registry: true
