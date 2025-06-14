@@ -9,7 +9,7 @@ spring:
   #  password: adaptive1234
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgres.microservices-ecommerce:5432/product #.svc.cluster.local
+    url: jdbc:postgresql://postgres.microservices-ecommerce:5432/payment #.svc.cluster.local
     username: wail
     password: wail
 
